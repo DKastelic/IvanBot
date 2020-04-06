@@ -41,6 +41,9 @@ async def on_message(message):
     if 'zakaj ' in message.content.lower() or 'zakva ' in message.content.lower():
         await message.channel.send('zato')
 
+    if 'dela!' in message.content.lower() and 'ne' not in message.content.lower():
+        await message.channel.send('YAY!')
+
     if 'lmao' in message.content.lower():
         await message.channel.send('lmao')
 
@@ -50,8 +53,8 @@ async def on_message(message):
     if "info" in [x.name for x in message.role_mentions]:
         await message.channel.send('<@&696418671723151381>')
 
-    if 'dela!' in message.content.lower() and 'ne' not in message.content.lower():
-        await message.channel.send('YAY!')
+    if message.content.lower().startswith('good bot'):
+        await message.channel.send('hvala')
 
     if message.content.upper() == "F":
         await message.channel.send('respect')
