@@ -1,9 +1,12 @@
 # bot.py
 import os
+import asyncio
 
 import discord
 from discord.ext import commands
 from dotenv import load_dotenv
+
+import const
 
 load_dotenv()
 TOKEN = os.getenv('DISCORD_TOKEN')
@@ -41,7 +44,7 @@ async def on_message(message):
     if 'lmao' in message.content.lower():
         await message.channel.send('lmao')
 
-    if message.tts and message.author.id != 243079671883890690:
+    if message.tts and message.author.id != const.MY_ID:
         await message.channel.send('shut the fuck up')
 
     if "info" in [x.name for x in message.role_mentions]:
@@ -53,16 +56,28 @@ async def on_message(message):
     if message.content.upper() == "F":
         await message.channel.send('respect')
 
+    if message.content.upper() == "X":
+        await message.channel.send('doubt')
+
     if message.content == "test":
         print(f'{message.author.guild.channels}')
 
     await bot.process_commands(message)
 
 
+crt_was_on = False
+
+
 @bot.event
 async def on_typing(channel, user, when):
-    if user.id == 122339209724821504 and channel.guild.id == 547839557870288896:
+    global crt_was_on
+    if not crt_was_on and user.id == const.CRT_ID and channel.guild.id == const.OUR_GUILD:
         await channel.send(f'look! {user.nick} decided to show up')
+        crt_was_on = True
+        await asyncio.sleep(6 * 3600)  # 1h = 3600s
+        crt_was_on = False
+    # elif user.id == const.CRT_ID:
+
 
 
 @bot.event
@@ -80,16 +95,17 @@ async def on_message_edit(before, after):
 
 @bot.event
 async def on_member_remove(member):
-    try:
-        await member.unban()
-    except:
-        print(f'{member.name} not banned')
+    if member.guild.id == const.OUR_GUILD:
+        try:
+            await member.unban()
+        except:
+            print(f'{member.name} not banned')
 
-    for x in member.guild.channels:
-        if isinstance(x, discord.TextChannel):
-            invite = await x.create_invite(max_uses=1)
-            await member.send(invite)
-            break
+        for x in member.guild.channels:
+            if isinstance(x, discord.TextChannel):
+                invite = await x.create_invite(max_uses=1)
+                await member.send(invite)
+                break
 
 
 bot.run(TOKEN)
