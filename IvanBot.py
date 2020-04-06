@@ -32,13 +32,13 @@ async def on_message(message):
     if 'a je kdo ' in message.content.lower() or 'ali je kdo ' in message.content.lower():
         await message.channel.send('ne')
 
-    if 'a bo ' in message.content.lower() or 'a bo?' in message.content.lower() or message.content.lower() == 'a bo':
+    if message.content.startswith('a bo ') or message.content.lower() == 'a bo?' or message.content.lower() == 'a bo':
         await message.channel.send('ne')
 
-    if 'koliko' in message.content.lower() or 'kolk' in message.content.lower() or 'kok' in message.content.lower() or 'kolko' in message.content.lower():
+    if 'koliko ' in message.content.lower() or 'kolk ' in message.content.lower() or 'kok ' in message.content.lower() or 'kolko ' in message.content.lower():
         await message.channel.send('dva')
 
-    if 'zakaj' in message.content.lower() or 'zakva' in message.content.lower():
+    if 'zakaj ' in message.content.lower() or 'zakva ' in message.content.lower():
         await message.channel.send('zato')
 
     if 'lmao' in message.content.lower():
