@@ -3,7 +3,7 @@ Just your classic classy writer.
 
 ## Features:
 
-### replies to messages:
+### auto reply:
 Content | Reply
 --------|------
 a je kdo ... | ne
