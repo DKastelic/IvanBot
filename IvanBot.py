@@ -6,10 +6,11 @@ import discord
 from discord.ext import commands
 from dotenv import load_dotenv
 
-import const
-
 load_dotenv()
 TOKEN = os.getenv('DISCORD_TOKEN')
+OUR_GUILD = int(os.getenv('DISCORD_OUR_GUILD'))
+CRT_ID = int(os.getenv('DISCORD_CRT_ID'))
+MY_ID = int(os.getenv('DISCORD_MY_ID'))
 
 bot = commands.Bot(command_prefix="ivan ")
 
@@ -55,7 +56,7 @@ async def on_message(message):
     if message.content.startswith('nice') or ' nice ' in message.content.lower() or message.content.endswith(' nice'):
         await message.channel.send('nice')
 
-    if message.tts and message.author.id != const.MY_ID:
+    if message.tts and message.author.id != MY_ID:
         await message.channel.send('shut the fuck up')
 
     if "info" in [x.name for x in message.role_mentions]:
@@ -71,7 +72,7 @@ async def on_message(message):
         await message.channel.send('doubt')
 
     if message.content == "test":
-        print(f'{message.author.guild.channels}')
+        print(f'{message}')
 
     await bot.process_commands(message)
 
@@ -83,18 +84,18 @@ crt_was_on = False
 @bot.event
 async def on_typing(channel, user, when):
     global crt_was_on
-    if not crt_was_on and user.id == const.CRT_ID and channel.guild.id == const.OUR_GUILD:
+    if not crt_was_on and user.id == CRT_ID and channel.guild.id == OUR_GUILD:
         await channel.send(f'look! {user.nick} decided to show up')
         crt_was_on = True
         await asyncio.sleep(6 * 3600)  # 1h = 3600s
         crt_was_on = False
-    # elif user.id == const.CRT_ID:
+    # elif user.id == CRT_ID:
 
 
 # auto unban
 @bot.event
 async def on_member_remove(member):
-    if member.guild.id == const.OUR_GUILD:
+    if member.guild.id == OUR_GUILD:
         try:
             await member.unban()
         except:
