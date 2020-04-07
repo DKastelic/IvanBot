@@ -1,6 +1,6 @@
 # bot.py
-import os
 import asyncio
+import os
 
 import discord
 from discord.ext import commands
@@ -32,13 +32,15 @@ async def on_message(message):
     if message.author == bot.user:
         return
 
-    if 'a je kdo ' in message.content.lower() or 'ali je kdo ' in message.content.lower():
+    if ((message.content.lower().startswith('a ') or message.content.lower().startswith('ali '))
+            and 'kdo' in message.content.lower()):
         await message.channel.send('ne')
 
-    if message.content.startswith('a bo ') or message.content.lower() == 'a bo?' or message.content.lower() == 'a bo':
+    if message.content.lower() == 'a bo?' or message.content.lower() == 'a bo':
         await message.channel.send('ne')
 
-    if 'koliko ' in message.content.lower() or 'kolk ' in message.content.lower() or 'kok ' in message.content.lower() or 'kolko ' in message.content.lower():
+    if ('koliko ' in message.content.lower() or 'kolk ' in message.content.lower()
+            or 'kok ' in message.content.lower() or 'kolko ' in message.content.lower()):
         await message.channel.send('dva')
 
     if 'zakaj ' in message.content.lower() or 'zakva ' in message.content.lower():
@@ -53,7 +55,7 @@ async def on_message(message):
     if 'lmao' in message.content.lower():
         await message.channel.send('lmao')
 
-    if message.content.startswith('nice') or ' nice ' in message.content.lower() or message.content.endswith(' nice'):
+    if message.content.lower().startswith('nice') or ' nice ' in message.content.lower() or message.content.lower().endswith(' nice'):
         await message.channel.send('nice')
 
     if message.tts and message.author.id != MY_ID:

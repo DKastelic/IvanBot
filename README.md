@@ -6,7 +6,7 @@ Just your classic classy writer.
 ### auto reply:
 Content | Reply
 --------|------
-a je kdo ... | ne
+a ... kdo ... | ne
 a bo? | ne
 koliko ... | 2
 zakaj ... | zato
