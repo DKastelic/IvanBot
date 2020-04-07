@@ -19,11 +19,13 @@ bot = commands.Bot(command_prefix="ivan ")
 #    await ctx.send('@dobi svoj info ni tezko pogledat mail pa nova.vegova pa moodle pa ekm pa discord pa teams')
 
 
+# connection confirmation
 @bot.event
 async def on_ready():
     print(f'{bot.user.name} has connected to Discord!')
 
 
+# auto reply
 @bot.event
 async def on_message(message):
     if message.author == bot.user:
@@ -74,6 +76,7 @@ async def on_message(message):
 crt_was_on = False
 
 
+# crt check
 @bot.event
 async def on_typing(channel, user, when):
     global crt_was_on
@@ -85,20 +88,7 @@ async def on_typing(channel, user, when):
     # elif user.id == const.CRT_ID:
 
 
-
-@bot.event
-async def on_message_delete(message):
-    print(f'`{message.content}` by {message.author.nick} was deleted')
-    # await message.channel.send(f'\`{message.content}`" by {message.author.nick} was deleted')
-
-
-@bot.event
-async def on_message_edit(before, after):
-    if before.content != '':
-        print(f'`{before.content}` was changed to `{after.content}` by {before.author.nick}')
-        # await on_message(after)
-
-
+# auto unban
 @bot.event
 async def on_member_remove(member):
     if member.guild.id == const.OUR_GUILD:
@@ -112,6 +102,21 @@ async def on_member_remove(member):
                 invite = await x.create_invite(max_uses=1)
                 await member.send(invite)
                 break
+
+
+# logging
+@bot.event
+async def on_message_delete(message):
+    print(f'`{message.content}` by {message.author.nick} was deleted')
+    # await message.channel.send(f'\`{message.content}`" by {message.author.nick} was deleted')
+
+
+# logging
+@bot.event
+async def on_message_edit(before, after):
+    if before.content != '':
+        print(f'`{before.content}` was changed to `{after.content}` by {before.author.nick}')
+        # await on_message(after)
 
 
 bot.run(TOKEN)
