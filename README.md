@@ -24,7 +24,7 @@ X | doubt
 ### crt check (only on server-chan):
 when crt is typing and hasn't been for the last 6 hours (or bot has been reset), sends "look who showed up".
 
-### unban (only on server-chan):
+### auto unban (only on server-chan):
 when a user leaves the server (including kicked, banned), unbans and sends an invite
 
 ### logging:
