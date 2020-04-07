@@ -46,6 +46,9 @@ async def on_message(message):
     if 'dela!' in message.content.lower() and 'ne' not in message.content.lower():
         await message.channel.send('YAY!')
 
+    if 'ivan' in message.content.lower():
+        await message.channel.send('ja?')
+
     if 'lmao' in message.content.lower():
         await message.channel.send('lmao')
 
@@ -69,8 +72,6 @@ async def on_message(message):
 
     if message.content == "test":
         print(f'{message.author.guild.channels}')
-    if 'ivan' in message.content.lower():
-        await message.channel.send('ja?')
 
     await bot.process_commands(message)
 

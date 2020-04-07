@@ -11,6 +11,7 @@ a bo? | ne
 koliko ... | 2
 zakaj ... | zato
 dela! | YAY!
+ivan | ja?
 lmao | lmao
 nice | nice
 /tts | shut up
