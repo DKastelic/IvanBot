@@ -47,7 +47,7 @@ async def on_message(message):
     if 'lmao' in message.content.lower():
         await message.channel.send('lmao')
 
-    if 'nice' in message.content.lower():
+    if ' nice' in message.content.lower() or message.content.startswith('nice'):
         await message.channel.send('nice')
 
     if message.tts and message.author.id != const.MY_ID:
