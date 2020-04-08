@@ -77,7 +77,7 @@ async def on_message(message):
     if message.content == "test":
         print(f'{message}')
 
-    if message.author.id == CAKA_ID:
+    if message.author.id == CAKA_ID and 'bot' in message.content:
         await message.channel.send('fuck you caka')
 
     await bot.process_commands(message)
