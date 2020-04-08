@@ -19,6 +19,7 @@ nice | nice
 good bot | hvala
 F | respect
 X | doubt
+od cake | fuck you
 
 (@info only on server-chan)
 

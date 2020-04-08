@@ -9,6 +9,7 @@ from dotenv import load_dotenv
 load_dotenv()
 TOKEN = os.getenv('DISCORD_TOKEN')
 OUR_GUILD = int(os.getenv('DISCORD_OUR_GUILD'))
+CAKA_ID = int(os.getenv('DISCORD_CAKA_ID'))
 CRT_ID = int(os.getenv('DISCORD_CRT_ID'))
 MY_ID = int(os.getenv('DISCORD_MY_ID'))
 
@@ -36,7 +37,7 @@ async def on_message(message):
             and 'kdo' in message.content.lower()):
         await message.channel.send('ne')
 
-    if message.content.lower() == 'a bo?' or message.content.lower() == 'a bo':
+    elif message.content.lower().startswith('a bo?') or message.content.lower().startswith('a bo '):
         await message.channel.send('ne')
 
     if ('koliko ' in message.content.lower() or 'kolk ' in message.content.lower()
@@ -76,6 +77,9 @@ async def on_message(message):
     if message.content == "test":
         print(f'{message}')
 
+    if message.author.id == CAKA_ID:
+        await message.channel.send('fuck you caka')
+
     await bot.process_commands(message)
 
 
@@ -85,6 +89,7 @@ crt_was_on = False
 # crt check
 @bot.event
 async def on_typing(channel, user, when):
+    # await channel.send('fuck you caka')
     global crt_was_on
     if not crt_was_on and user.id == CRT_ID and channel.guild.id == OUR_GUILD:
         await channel.send(f'look! {user.nick} decided to show up')
@@ -123,6 +128,5 @@ async def on_message_edit(before, after):
     if before.content != '':
         print(f'`{before.content}` was changed to `{after.content}` by {before.author.nick}')
         # await on_message(after)
-
 
 bot.run(TOKEN)
