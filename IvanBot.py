@@ -50,7 +50,7 @@ async def on_message(message):
     if 'dela!' in message.content.lower() and 'ne' not in message.content.lower():
         await message.channel.send('YAY!')
 
-    if 'ivan ' in message.content.lower():
+    if message.content.lower().startswith('ivan ') or ' ivan ' in message.content.lower():
         await message.channel.send('ja?')
 
     if 'lmao' in message.content.lower():
