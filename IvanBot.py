@@ -54,7 +54,7 @@ async def on_message(message):
         await message.channel.send('ja?')
 
     if 'lmao' in message.content.lower():
-        await message.channel.send('lmao')
+        await message.channel.send('lamo')
 
     if message.content.lower().startswith('nice') or ' nice ' in message.content.lower() or message.content.lower().endswith(' nice'):
         await message.channel.send('noce')
